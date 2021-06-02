@@ -3,6 +3,30 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state={
+            echo : ''
+        };
+
+    }
+
+    handleChange = (e) => {
+        this.updateEcho(e.target.value);
+    }
+
+    updateEcho = (echo) => {
+      this.setState(() => ({
+        echo : echo.trim()
+      }));
+
+    }
+
+    clearEcho = () => {
+      this.updateEcho('')
+    }
+
   render() {
     return (
       <div className="App">
@@ -11,9 +35,9 @@ class App extends Component {
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
         <div className="container">
-          <input type="text" placeholder="Say Something" />
+          <input type="text" onChange={(e) => {this.updateEcho(e.target.value)}} placeholder="Say Something" />
           <p className="echo">Echo:</p>
-          <p>This should mirror the text you typed into the input field.</p>
+          <p>{this.state.echo}</p>
         </div>
       </div>
     );
